@@ -1,0 +1,2 @@
+# Ignore Onedrive folder
+C:\Users\dkpunit\OneDrive
