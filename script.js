@@ -1,24 +1,35 @@
-let offsetX, offsetY;
+let offsetX, offsetY, draggedElement;
 
 // Function to start dragging an element
-function startDrag(event, element) {
-  offsetX = event.clientX - element.getBoundingClientRect().left;
-  offsetY = event.clientY - element.getBoundingClientRect().top;
+function startDrag(event) {
+  draggedElement = event.target.closest('.widget'); // Only drag if a widget was clicked
+  if (draggedElement) {
+    offsetX = event.clientX - draggedElement.getBoundingClientRect().left;
+    offsetY = event.clientY - draggedElement.getBoundingClientRect().top;
 
-  document.onmousemove = (e) => dragElement(e, element);
-  document.onmouseup = stopDrag;
+    // Attach event listeners for moving and stopping the drag
+    document.addEventListener('mousemove', dragElement);
+    document.addEventListener('mouseup', stopDrag);
+  }
 }
 
 // Function to drag the element
-function dragElement(event, element) {
-  element.style.left = `${event.clientX - offsetX}px`;
-  element.style.top = `${event.clientY - offsetY}px`;
+function dragElement(event) {
+  if (draggedElement) {
+    draggedElement.style.position = 'absolute';
+    draggedElement.style.left = `${event.clientX - offsetX}px`;
+    draggedElement.style.top = `${event.clientY - offsetY}px`;
+  }
 }
 
 // Function to stop dragging
 function stopDrag() {
-  document.onmousemove = null;
-  document.onmouseup = null;
+  if (draggedElement) {
+    // Remove event listeners to stop dragging
+    document.removeEventListener('mousemove', dragElement);
+    document.removeEventListener('mouseup', stopDrag);
+    draggedElement = null;
+  }
 }
 
 // Array of warrior idioms with descriptions
@@ -167,7 +178,7 @@ window.onload = () => {
 
   // Add dragging functionality to each widget
   document.querySelectorAll('.widget').forEach(widget => {
-    widget.onmousedown = (event) => startDrag(event, widget);
+    widget.addEventListener('mousedown', startDrag);
   });
 };
 
