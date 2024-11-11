@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daily Warrior Idiom</title>
+  <title>Warrior Wisdom</title>
   <style>
     /* Basic styles for a warrior-themed look */
     * {
@@ -20,6 +20,7 @@
       font-family: Arial, sans-serif;
       background-color: #333;
       color: #fff;
+      flex-direction: column;
     }
     
     .container {
@@ -28,13 +29,14 @@
       padding: 20px;
       background: rgba(0, 0, 0, 0.8);
       border-radius: 10px;
+      margin-bottom: 20px;
     }
     
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 0.5em;
+    h1, h2 {
+      font-size: 1.8em;
+      color: #FFD700;
     }
-    
+
     .idiom {
       font-size: 1.5em;
       font-weight: bold;
@@ -48,7 +50,29 @@
       color: #ccc;
       margin-top: 0.5em;
     }
-    
+
+    .widget {
+      margin: 20px 0;
+      padding: 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+    }
+
+    .daily-quote p, .training-tips p {
+      font-size: 1em;
+      color: #fff;
+    }
+
+    .warrior-timeline ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .warrior-timeline li {
+      padding: 8px 0;
+      color: #FFD700;
+    }
+
     .about {
       font-size: 0.9em;
       color: #ccc;
@@ -63,7 +87,28 @@
     <small class="about">Embrace your warrior spirit with a daily dose of courage and resilience.</small>
   </div>
   
+  <!-- Daily Quote Widget -->
+  <div class="widget daily-quote">
+    <h2>Daily Warrior Quote</h2>
+    <p id="dailyQuote">Loading today's quote...</p>
+  </div>
+
+  <!-- Warrior Timeline Widget -->
+  <div class="widget warrior-timeline">
+    <h2>Warrior Timeline</h2>
+    <ul id="timeline">
+      <!-- Timeline events will be dynamically loaded here -->
+    </ul>
+  </div>
+
+  <!-- Weekly Training Tip Widget -->
+  <div class="widget training-tips">
+    <h2>Weekly Training Tip</h2>
+    <p id="weeklyTip">Loading weekly tip...</p>
+  </div>
+  
   <!-- Link to the external JavaScript file -->
   <script src="script.js" defer></script>
 </body>
 </html>
+ 
