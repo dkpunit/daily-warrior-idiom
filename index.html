@@ -56,6 +56,9 @@
       padding: 15px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 8px;
+    }
+
+    .draggable-area {
       cursor: move;
     }
 
@@ -114,6 +117,15 @@
     .holidays-widget li {
       margin: 5px 0;
     }
+
+    /* Remembrance Day Widget Styling */
+    .remembrance-widget p {
+      font-size: 0.8em; /* Smaller font size to fit all text */
+      line-height: 1.4em; /* Adjust line spacing for readability */
+      color: #fff; /* White text color for readability */
+      text-align: center;
+      padding: 10px;
+    }
   </style>
 </head>
 <body>
@@ -126,13 +138,13 @@
   
   <!-- Daily Quote Widget -->
   <div class="widget daily-quote">
-    <h2>Daily Warrior Quote</h2>
+    <h2 class="draggable-area">Daily Warrior Quote</h2>
     <p id="dailyQuote">Loading today's quote...</p>
   </div>
 
   <!-- Warrior Timeline Widget -->
   <div class="widget warrior-timeline">
-    <h2>Warrior Timeline</h2>
+    <h2 class="draggable-area">Warrior Timeline</h2>
     <ul id="timeline">
       <!-- Timeline events will be dynamically loaded here -->
     </ul>
@@ -140,27 +152,51 @@
 
   <!-- Weekly Training Tip Widget -->
   <div class="widget training-tips">
-    <h2>Weekly Training Tip</h2>
+    <h2 class="draggable-area">Weekly Training Tip</h2>
     <p id="weeklyTip">Loading weekly tip...</p>
   </div>
   
   <!-- Time and Date Widget -->
   <div class="widget time-widget">
-    <h2>Current Date and Time</h2>
+    <h2 class="draggable-area">Current Date and Time</h2>
     <p id="currentDate">Loading date...</p>
     <p id="currentTime">Loading time...</p>
   </div>
 
   <!-- Upcoming Holidays Widget -->
   <div class="widget holidays-widget">
-    <h2>Upcoming Holidays</h2>
+    <h2 class="draggable-area">Upcoming Holidays</h2>
     <ul id="holidaysList">Loading holidays...</ul>
   </div>
 
   <!-- Christmas Countdown Timer -->
   <div class="widget countdown-widget">
-    <h2>Christmas Countdown</h2>
+    <h2 class="draggable-area">Christmas Countdown</h2>
     <p id="countdownTimer">Loading countdown...</p>
+  </div>
+
+  <!-- Remembrance Day Widget -->
+  <div class="widget remembrance-widget">
+    <h2>Remembrance Day</h2>
+    <p id="flandersFieldPoem">
+      In Flanders fields the poppies blow<br>
+      Between the crosses, row on row,<br>
+      That mark our place; and in the sky<br>
+      The larks, still bravely singing, fly<br>
+      Scarce heard amid the guns below.<br><br>
+
+      We are the Dead. Short days ago<br>
+      We lived, felt dawn, saw sunset glow,<br>
+      Loved and were loved, and now we lie<br>
+      In Flanders fields.<br><br>
+
+      Take up our quarrel with the foe:<br>
+      To you from failing hands we throw<br>
+      The torch; be yours to hold it high.<br>
+      If ye break faith with us who die<br>
+      We shall not sleep, though poppies grow<br>
+      In Flanders fields.
+    </p>
   </div>
 
   <!-- Link to the external JavaScript file -->
