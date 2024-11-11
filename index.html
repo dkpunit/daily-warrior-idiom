@@ -56,6 +56,8 @@
       padding: 15px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 8px;
+      cursor: move; /* Show move cursor */
+      position: absolute;
     }
 
     .daily-quote p, .training-tips p {
@@ -73,13 +75,12 @@
       color: #FFD700;
     }
 
-    /* Time widget positioned at the top-right of the window */
+    /* Top-right position for the time widget by default */
     .time-widget {
-      position: absolute;
       top: 20px;
       right: 20px;
       width: auto;
-      background: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+      background: rgba(0, 0, 0, 0.7);
       padding: 10px;
       border-radius: 8px;
       text-align: right;
@@ -111,28 +112,25 @@
     <small class="about">Embrace your warrior spirit with a daily dose of courage and resilience.</small>
   </div>
   
-  <!-- Daily Quote Widget -->
-  <div class="widget daily-quote">
+  <!-- Widgets with draggable attributes -->
+  <div class="widget daily-quote" onmousedown="startDrag(event, this)">
     <h2>Daily Warrior Quote</h2>
     <p id="dailyQuote">Loading today's quote...</p>
   </div>
 
-  <!-- Warrior Timeline Widget -->
-  <div class="widget warrior-timeline">
+  <div class="widget warrior-timeline" onmousedown="startDrag(event, this)">
     <h2>Warrior Timeline</h2>
     <ul id="timeline">
       <!-- Timeline events will be dynamically loaded here -->
     </ul>
   </div>
 
-  <!-- Weekly Training Tip Widget -->
-  <div class="widget training-tips">
+  <div class="widget training-tips" onmousedown="startDrag(event, this)">
     <h2>Weekly Training Tip</h2>
     <p id="weeklyTip">Loading weekly tip...</p>
   </div>
   
-  <!-- Time and Date Widget -->
-  <div class="widget time-widget">
+  <div class="widget time-widget" onmousedown="startDrag(event, this)">
     <h2>Current Date and Time</h2>
     <p id="currentDate">Loading date...</p>
     <p id="currentTime">Loading time...</p>

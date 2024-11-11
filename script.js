@@ -1,3 +1,27 @@
+let offsetX, offsetY;
+
+function startDrag(event, element) {
+  // Get initial mouse position and element position
+  offsetX = event.clientX - element.getBoundingClientRect().left;
+  offsetY = event.clientY - element.getBoundingClientRect().top;
+
+  // Attach the move event to the document
+  document.onmousemove = (e) => dragElement(e, element);
+  document.onmouseup = stopDrag;
+}
+
+function dragElement(event, element) {
+  // Update the element’s position based on mouse movement
+  element.style.left = `${event.clientX - offsetX}px`;
+  element.style.top = `${event.clientY - offsetY}px`;
+}
+
+function stopDrag() {
+  // Remove mousemove and mouseup events to stop dragging
+  document.onmousemove = null;
+  document.onmouseup = null;
+}
+
 // Array of warrior idioms with descriptions
 const idioms = [
   { 
@@ -21,74 +45,7 @@ function getDailyIdiom() {
   document.getElementById("idiomDescription").textContent = idiom.description;
 }
 
-// Array of daily quotes
-const quotes = [
-  "Strength does not come from physical capacity. It comes from an indomitable will.",
-  "Victory is reserved for those who are willing to pay its price.",
-  "A warrior never worries about his fear.",
-  "One who conquers himself is greater than another who conquers a thousand times.",
-  "The more you sweat in training, the less you bleed in battle."
-];
-
-// Function to get a daily quote based on the date
-function getDailyQuote() {
-  const date = new Date();
-  const quoteIndex = date.getDate() % quotes.length;
-  document.getElementById("dailyQuote").textContent = quotes[quoteIndex];
-}
-
-// Array of historical warrior events for the timeline
-const events = [
-  { year: "480 BC", event: "Battle of Thermopylae" },
-  { year: "1180 AD", event: "Samurai rise in Japan" },
-  { year: "1775 AD", event: "Formation of the Continental Army" },
-];
-
-// Function to load the warrior timeline
-function loadTimeline() {
-  const timeline = document.getElementById("timeline");
-  events.forEach(event => {
-    const listItem = document.createElement("li");
-    listItem.innerHTML = `<strong>${event.year}</strong> - ${event.event}`;
-    timeline.appendChild(listItem);
-  });
-}
-
-// Array of weekly training tips
-const tips = [
-  "Practice mindfulness to build mental resilience.",
-  "Incorporate interval training to increase stamina.",
-  "Focus on flexibility to reduce injury risk.",
-  "Engage in shadowboxing for agility and strength.",
-  "Use progressive overload for steady strength gains."
-];
-
-// Function to get a weekly training tip
-function getWeeklyTip() {
-  const week = Math.floor(new Date().getDate() / 7);
-  document.getElementById("weeklyTip").textContent = tips[week % tips.length];
-}
-
-// Function to update time and date
-function updateTimeAndDate() {
-  const now = new Date();
-  
-  // Format the date
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const formattedDate = now.toLocaleDateString(undefined, options);
-
-  // Format the time
-  const hours = String(now.getHours()).padStart(2, '0');
-  const minutes = String(now.getMinutes()).padStart(2, '0');
-  const seconds = String(now.getSeconds()).padStart(2, '0');
-  const formattedTime = `${hours}:${minutes}:${seconds}`;
-  
-  // Display the date and time
-  document.getElementById("currentDate").textContent = formattedDate;
-  document.getElementById("currentTime").textContent = formattedTime;
-}
-
-// Initialize all widgets on page load
+// Other widget functions, like getDailyQuote, loadTimeline, getWeeklyTip, and updateTimeAndDate...
 window.onload = () => {
   getDailyIdiom();
   getDailyQuote();
@@ -97,5 +54,4 @@ window.onload = () => {
   updateTimeAndDate();
 };
 
-// Update the time and date every second
 setInterval(updateTimeAndDate, 1000);
