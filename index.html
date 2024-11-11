@@ -58,7 +58,7 @@
       border-radius: 8px;
     }
 
-    .daily-quote p, .training-tips p {
+    .daily-quote p, .training-tips p, .time-widget p {
       font-size: 1em;
       color: #fff;
     }
@@ -71,6 +71,12 @@
     .warrior-timeline li {
       padding: 8px 0;
       color: #FFD700;
+    }
+
+    .time-widget p {
+      font-size: 1.2em;
+      color: #FFD700;
+      margin: 5px 0;
     }
 
     .about {
@@ -107,8 +113,14 @@
     <p id="weeklyTip">Loading weekly tip...</p>
   </div>
   
+  <!-- Time and Date Widget -->
+  <div class="widget time-widget">
+    <h2>Current Date and Time</h2>
+    <p id="currentDate">Loading date...</p>
+    <p id="currentTime">Loading time...</p>
+  </div>
+  
   <!-- Link to the external JavaScript file -->
   <script src="script.js" defer></script>
 </body>
 </html>
- 
