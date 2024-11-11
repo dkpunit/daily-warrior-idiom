@@ -58,7 +58,7 @@
       border-radius: 8px;
     }
 
-    .daily-quote p, .training-tips p, .time-widget p {
+    .daily-quote p, .training-tips p {
       font-size: 1em;
       color: #fff;
     }
@@ -73,8 +73,26 @@
       color: #FFD700;
     }
 
-    .time-widget p {
+    /* Time widget positioned at the top-right of the window */
+    .time-widget {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: auto;
+      background: rgba(0, 0, 0, 0.7); /* Slightly transparent background */
+      padding: 10px;
+      border-radius: 8px;
+      text-align: right;
+    }
+
+    .time-widget h2 {
       font-size: 1.2em;
+      margin: 0;
+      color: #FFD700;
+    }
+
+    .time-widget p {
+      font-size: 1em;
       color: #FFD700;
       margin: 5px 0;
     }
