@@ -56,8 +56,6 @@
       padding: 15px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 8px;
-      cursor: move; /* Show move cursor */
-      position: absolute;
     }
 
     .daily-quote p, .training-tips p {
@@ -75,8 +73,9 @@
       color: #FFD700;
     }
 
-    /* Top-right position for the time widget by default */
+    /* Time widget positioned at the top-right of the window */
     .time-widget {
+      position: absolute;
       top: 20px;
       right: 20px;
       width: auto;
@@ -102,6 +101,18 @@
       font-size: 0.9em;
       color: #ccc;
     }
+
+    /* Styling for Holidays and Countdown Widgets */
+    .holidays-widget ul, .countdown-widget p {
+      font-size: 1.2em;
+      color: #FFD700;
+      list-style: none;
+      padding: 0;
+    }
+
+    .holidays-widget li {
+      margin: 5px 0;
+    }
   </style>
 </head>
 <body>
@@ -112,30 +123,45 @@
     <small class="about">Embrace your warrior spirit with a daily dose of courage and resilience.</small>
   </div>
   
-  <!-- Widgets with draggable attributes -->
-  <div class="widget daily-quote" onmousedown="startDrag(event, this)">
+  <!-- Daily Quote Widget -->
+  <div class="widget daily-quote">
     <h2>Daily Warrior Quote</h2>
     <p id="dailyQuote">Loading today's quote...</p>
   </div>
 
-  <div class="widget warrior-timeline" onmousedown="startDrag(event, this)">
+  <!-- Warrior Timeline Widget -->
+  <div class="widget warrior-timeline">
     <h2>Warrior Timeline</h2>
     <ul id="timeline">
       <!-- Timeline events will be dynamically loaded here -->
     </ul>
   </div>
 
-  <div class="widget training-tips" onmousedown="startDrag(event, this)">
+  <!-- Weekly Training Tip Widget -->
+  <div class="widget training-tips">
     <h2>Weekly Training Tip</h2>
     <p id="weeklyTip">Loading weekly tip...</p>
   </div>
   
-  <div class="widget time-widget" onmousedown="startDrag(event, this)">
+  <!-- Time and Date Widget -->
+  <div class="widget time-widget">
     <h2>Current Date and Time</h2>
     <p id="currentDate">Loading date...</p>
     <p id="currentTime">Loading time...</p>
   </div>
-  
+
+  <!-- Upcoming Holidays Widget -->
+  <div class="widget holidays-widget">
+    <h2>Upcoming Holidays</h2>
+    <ul id="holidaysList">Loading holidays...</ul>
+  </div>
+
+  <!-- Christmas Countdown Timer -->
+  <div class="widget countdown-widget">
+    <h2>Christmas Countdown</h2>
+    <p id="countdownTimer">Loading countdown...</p>
+  </div>
+
   <!-- Link to the external JavaScript file -->
   <script src="script.js" defer></script>
 </body>

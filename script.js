@@ -1,4 +1,3 @@
-// Initialize variables for dragging
 let offsetX, offsetY;
 
 // Function to start dragging an element
@@ -109,20 +108,69 @@ function updateTimeAndDate() {
   document.getElementById("currentTime").textContent = formattedTime;
 }
 
+// Array of holidays
+const holidays = [
+  { name: "Thanksgiving", date: "2024-11-28" },
+  { name: "Christmas", date: "2024-12-25" },
+  { name: "New Year's Day", date: "2025-01-01" },
+  { name: "Valentine's Day", date: "2025-02-14" },
+  { name: "St. Patrick's Day", date: "2025-03-17" }
+];
+
+// Function to display the next few upcoming holidays
+function displayUpcomingHolidays() {
+  const today = new Date();
+  const upcoming = holidays
+    .filter(holiday => new Date(holiday.date) > today) // Filter future holidays
+    .slice(0, 3); // Display only the next 3 holidays
+  
+  const holidaysList = document.getElementById("holidaysList");
+  holidaysList.innerHTML = ""; // Clear existing content
+
+  upcoming.forEach(holiday => {
+    const listItem = document.createElement("li");
+    listItem.textContent = `${holiday.name} - ${new Date(holiday.date).toLocaleDateString()}`;
+    holidaysList.appendChild(listItem);
+  });
+}
+
+// Function to calculate and display countdown to Christmas
+function updateChristmasCountdown() {
+  const christmasDate = new Date(new Date().getFullYear(), 11, 25); // Dec 25 of the current year
+  const now = new Date();
+  
+  // If today's date is past Christmas, calculate countdown for next year
+  if (now > christmasDate) {
+    christmasDate.setFullYear(christmasDate.getFullYear() + 1);
+  }
+
+  const timeRemaining = christmasDate - now;
+  
+  const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+  document.getElementById("countdownTimer").textContent =
+    `${days}d ${hours}h ${minutes}m ${seconds}s`;
+}
+
 // Initialize all widgets on page load and add dragging functionality
 window.onload = () => {
-  // Initialize widgets
   getDailyIdiom();
   getDailyQuote();
   loadTimeline();
   getWeeklyTip();
   updateTimeAndDate();
-
-  // Set interval to update time every second
-  setInterval(updateTimeAndDate, 1000);
+  displayUpcomingHolidays(); // Initialize holidays widget
+  updateChristmasCountdown(); // Initialize Christmas countdown
 
   // Add dragging functionality to each widget
   document.querySelectorAll('.widget').forEach(widget => {
     widget.onmousedown = (event) => startDrag(event, widget);
   });
 };
+
+// Update time, date, and countdown every second
+setInterval(updateTimeAndDate, 1000);
+setInterval(updateChristmasCountdown, 1000);
