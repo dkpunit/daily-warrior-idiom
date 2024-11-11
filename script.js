@@ -6,6 +6,7 @@ function startDrag(event) {
   if (target) {
     draggedElement = target.closest('.widget'); // Set the parent widget as the dragged element
     if (draggedElement) {
+      draggedElement.style.position = 'absolute'; // Ensure position is absolute for proper dragging
       offsetX = event.clientX - draggedElement.getBoundingClientRect().left;
       offsetY = event.clientY - draggedElement.getBoundingClientRect().top;
 
@@ -19,7 +20,6 @@ function startDrag(event) {
 // Function to drag the element
 function dragElement(event) {
   if (draggedElement) {
-    draggedElement.style.position = 'absolute';
     draggedElement.style.left = `${event.clientX - offsetX}px`;
     draggedElement.style.top = `${event.clientY - offsetY}px`;
   }
