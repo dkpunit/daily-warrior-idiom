@@ -17,7 +17,7 @@ function handleGoogleSignIn() {
     });
 }
 
-// Optional log out
+// Optional log out function (if you need it later)
 function handleSignOut() {
   auth.signOut().then(() => {
     document.getElementById('login-container').style.display = 'flex';
@@ -75,14 +75,10 @@ function stopDrag() {
 }
 
 function loadDynamicContent() {
-  // Example dynamic content loading
   document.getElementById("dailyIdiom").textContent = "Bite the bullet";
   document.getElementById("idiomDescription").textContent = "To face a difficult situation with courage.";
 }
 
 window.onload = () => {
   document.querySelectorAll('.widget .widget-header').forEach(header => {
-    header.addEventListener('mousedown', (event) => startDrag(event, header.closest('.widget')));
-  });
-  loadDynamicContent();
-};
+    header.add

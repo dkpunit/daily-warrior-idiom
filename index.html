@@ -5,20 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Warrior Wisdom - Admin Login</title>
 
-  <!-- Firebase SDKs -->
+  <!-- Firebase SDKs from CDN -->
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js"></script>
 
   <!-- Firebase Configuration -->
   <script>
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_AUTH_DOMAIN",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_STORAGE_BUCKET",
-      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-      appId: "YOUR_APP_ID"
+      apiKey: "AIzaSyAYhTeAM_aj-coCi_nr6t5b9FzkI5RuwIs",
+      authDomain: "davepunit-4338a.firebaseapp.com",
+      projectId: "davepunit-4338a",
+      storageBucket: "davepunit-4338a.appspot.com",
+      messagingSenderId: "685471817615",
+      appId: "1:685471817615:web:01e7394bdf0eba6c1435fa",
+      measurementId: "G-C1Z7BXCL4C"
     };
+
+    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
   </script>
 
@@ -167,7 +170,6 @@
   <!-- Login Container -->
   <div class="login-container" id="login-container">
     <h2>Admin Login</h2>
-    <!-- Google Sign-In Button -->
     <button id="google-signin" onclick="handleGoogleSignIn()">Sign in with Google</button>
   </div>
 
@@ -192,7 +194,7 @@
       </div>
     </div>
 
-    <!-- Other widgets go here -->
+    <!-- Add other widgets as needed -->
   </div>
 
   <script src="script.js" defer></script>
