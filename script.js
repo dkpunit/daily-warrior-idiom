@@ -58,10 +58,12 @@ function stopDrag() {
   }
 }
 
+// Additional dynamic content functions here (quotes, idioms, time, etc.)
+
 // Initialize all widgets on page load
 window.onload = () => {
   document.querySelectorAll('.widget').forEach(widget => {
-    // Attach the mousedown event to each widget's draggable area and resize handle
     widget.addEventListener('mousedown', startDrag);
   });
+  // Call dynamic content functions here
 };

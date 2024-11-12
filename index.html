@@ -76,7 +76,6 @@
       border-radius: 3px;
     }
 
-    /* Other widget styling */
     .daily-quote p, .training-tips p {
       font-size: 1em;
       color: #fff;
@@ -92,11 +91,12 @@
       color: #FFD700;
     }
 
+    /* Time widget with fixed width to prevent resizing */
     .time-widget {
       position: absolute;
       top: 20px;
       right: 20px;
-      width: 200px; /* Fixed initial width */
+      width: 200px;
       background: rgba(0, 0, 0, 0.7);
       padding: 10px;
       border-radius: 8px;
@@ -155,7 +155,70 @@
     <div class="resize-handle"></div> <!-- Add resize handle -->
   </div>
 
-  <!-- Other widgets follow the same structure -->
+  <!-- Warrior Timeline Widget -->
+  <div class="widget warrior-timeline">
+    <h2 class="draggable-area">Warrior Timeline</h2>
+    <ul id="timeline">
+      <!-- Timeline events will be dynamically loaded here -->
+    </ul>
+    <div class="resize-handle"></div>
+  </div>
+
+  <!-- Weekly Training Tip Widget -->
+  <div class="widget training-tips">
+    <h2 class="draggable-area">Weekly Training Tip</h2>
+    <p id="weeklyTip">Loading weekly tip...</p>
+    <div class="resize-handle"></div>
+  </div>
+  
+  <!-- Time and Date Widget -->
+  <div class="widget time-widget">
+    <h2 class="draggable-area">Current Date and Time</h2>
+    <p id="currentDate">Loading date...</p>
+    <p id="currentTime">Loading time...</p>
+    <div class="resize-handle"></div>
+  </div>
+
+  <!-- Upcoming Holidays Widget -->
+  <div class="widget holidays-widget">
+    <h2 class="draggable-area">Upcoming Holidays</h2>
+    <ul id="holidaysList">Loading holidays...</ul>
+    <div class="resize-handle"></div>
+  </div>
+
+  <!-- Christmas Countdown Timer -->
+  <div class="widget countdown-widget">
+    <h2 class="draggable-area">Christmas Countdown</h2>
+    <p id="countdownTimer">Loading countdown...</p>
+    <div class="resize-handle"></div>
+  </div>
+
+  <!-- Remembrance Day Widget -->
+  <div class="widget remembrance-widget">
+    <h2>Remembrance Day</h2>
+    <p id="flandersFieldPoem">
+      In Flanders fields the poppies blow<br>
+      Between the crosses, row on row,<br>
+      That mark our place; and in the sky<br>
+      The larks, still bravely singing, fly<br>
+      Scarce heard amid the guns below.<br><br>
+
+      We are the Dead. Short days ago<br>
+      We lived, felt dawn, saw sunset glow,<br>
+      Loved and were loved, and now we lie<br>
+      In Flanders fields.<br><br>
+
+      Take up our quarrel with the foe:<br>
+      To you from failing hands we throw<br>
+      The torch; be yours to hold it high.<br>
+      If ye break faith with us who die<br>
+      We shall not sleep, though poppies grow<br>
+      In Flanders fields.
+    </p>
+    <div class="resize-handle"></div>
+  </div>
+
+  <!-- Link to the external JavaScript file -->
   <script src="script.js" defer></script>
 </body>
 </html>
