@@ -10,40 +10,40 @@
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       display: flex;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      font-family: Arial, sans-serif;
+      font-family: "Courier New", Courier, monospace;
       background-color: #333;
       color: #fff;
       flex-direction: column;
       position: relative;
     }
-    
+
     .container {
       text-align: center;
       max-width: 600px;
       padding: 20px;
-      background: rgba(0, 0, 0, 0.8);
-      border-radius: 10px;
+      background: #000;
+      border: 2px solid #FFD700;
+      color: #FFD700;
+      font-weight: bold;
       margin-bottom: 20px;
     }
-    
+
     h1, h2 {
       font-size: 1.8em;
       color: #FFD700;
     }
 
     .idiom {
-      font-size: 1.5em;
-      font-weight: bold;
-      margin: 1em 0;
+      font-size: 1.3em;
       color: #FFD700;
     }
-    
+
     .idiom-description {
       font-size: 1em;
       font-style: italic;
@@ -52,35 +52,56 @@
     }
 
     .widget {
-      margin: 20px 0;
-      padding: 15px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      border-top: 4px solid #FFD700;
+      margin: 20px;
+      background: #000;
+      color: #FFFFFF;
+      border: 2px solid #FFD700;
+      width: auto;
       position: absolute;
-      min-width: 200px;
-      min-height: 100px;
+      font-family: "Courier New", Courier, monospace;
+      overflow: auto;
+      word-wrap: break-word;
+      min-width: 220px;
+      max-width: 300px;
+      border-radius: 3px;
+      resize: both; /* Enable resizing */
     }
 
-    .draggable-area {
+    .widget-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #FFD700;
+      color: #333;
+      padding: 5px;
+      font-weight: bold;
       cursor: move;
-      height: 20px;
-      background-color: rgba(255, 215, 0, 0.3);
-      display: none;
     }
 
-    .widget:hover .draggable-area {
-      display: block;
+    .widget-content {
+      padding: 10px;
     }
 
-    .resize-handle {
-      width: 15px;
-      height: 15px;
-      background: #FFD700;
+    .close-btn, .reset-btn {
+      background-color: #FFD700;
+      border: none;
+      color: #333;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 2px;
+    }
+
+    .reset-all {
       position: absolute;
-      right: 5px;
-      bottom: 5px;
-      cursor: nwse-resize;
+      top: 10px;
+      right: 10px;
+      background-color: #FFD700;
+      color: #333;
+      font-weight: bold;
+      padding: 8px;
+      cursor: pointer;
+      border: none;
       border-radius: 3px;
     }
   </style>
@@ -92,49 +113,69 @@
     <p class="idiom-description" id="idiomDescription"></p>
     <small class="about">Embrace your warrior spirit with a daily dose of courage and resilience.</small>
   </div>
-  
-  <!-- Widgets with draggable areas and resize handles -->
+
+  <button class="reset-all" onclick="resetAllWidgets()">Reset All Widgets</button>
+
+  <!-- Example of a widget with auto-sizing, draggable, resizable, and close button -->
   <div class="widget daily-quote" style="left: 20px; top: 20px;">
-    <div class="draggable-area"></div>
-    <h2>Daily Warrior Quote</h2>
-    <p id="dailyQuote">Loading today's quote...</p>
-    <div class="resize-handle"></div>
+    <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
+      <span>Daily Warrior Quote</span>
+      <button class="close-btn" onclick="closeWidget(this)">X</button>
+    </div>
+    <div class="widget-content">
+      <p id="dailyQuote">Loading today's quote...</p>
+    </div>
   </div>
 
-  <div class="widget warrior-timeline" style="left: 240px; top: 20px;">
-    <div class="draggable-area"></div>
-    <h2>Warrior Timeline</h2>
-    <ul id="timeline"></ul>
-    <div class="resize-handle"></div>
+  <div class="widget warrior-timeline" style="left: 260px; top: 20px;">
+    <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
+      <span>Warrior Timeline</span>
+      <button class="close-btn" onclick="closeWidget(this)">X</button>
+    </div>
+    <div class="widget-content">
+      <ul id="timeline">Loading timeline...</ul>
+    </div>
   </div>
 
-  <div class="widget training-tips" style="left: 460px; top: 20px;">
-    <div class="draggable-area"></div>
-    <h2>Weekly Training Tip</h2>
-    <p id="weeklyTip">Loading weekly tip...</p>
-    <div class="resize-handle"></div>
-  </div>
-  
-  <div class="widget time-widget" style="left: 20px; top: 160px;">
-    <div class="draggable-area"></div>
-    <h2>Current Date and Time</h2>
-    <p id="currentDate">Loading date...</p>
-    <p id="currentTime">Loading time...</p>
-    <div class="resize-handle"></div>
+  <div class="widget training-tips" style="left: 500px; top: 20px;">
+    <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
+      <span>Weekly Training Tip</span>
+      <button class="close-btn" onclick="closeWidget(this)">X</button>
+    </div>
+    <div class="widget-content">
+      <p id="weeklyTip">Loading weekly tip...</p>
+    </div>
   </div>
 
-  <div class="widget holidays-widget" style="left: 240px; top: 160px;">
-    <div class="draggable-area"></div>
-    <h2>Upcoming Holidays</h2>
-    <ul id="holidaysList">Loading holidays...</ul>
-    <div class="resize-handle"></div>
+  <div class="widget time-widget" style="left: 20px; top: 200px;">
+    <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
+      <span>Current Date and Time</span>
+      <button class="close-btn" onclick="closeWidget(this)">X</button>
+    </div>
+    <div class="widget-content">
+      <p id="currentDate">Loading date...</p>
+      <p id="currentTime">Loading time...</p>
+    </div>
   </div>
 
-  <div class="widget countdown-widget" style="left: 460px; top: 160px;">
-    <div class="draggable-area"></div>
-    <h2>Christmas Countdown</h2>
-    <p id="countdownTimer">Loading countdown...</p>
-    <div class="resize-handle"></div>
+  <div class="widget holidays-widget" style="left: 260px; top: 200px;">
+    <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
+      <span>Upcoming Holidays</span>
+      <button class="close-btn" onclick="closeWidget(this)">X</button>
+    </div>
+    <div class="widget-content">
+      <ul id="holidaysList">Loading holidays...</ul>
+    </div>
+  </div>
+
+  <div class="widget countdown-widget" style="left: 500px; top: 200px;">
+    <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
+      <span>Christmas Countdown</span>
+      <button class="close-btn" onclick="closeWidget(this)">X</button>
+    </div>
+    <div class="widget-content">
+      <p id="countdownTimer">Loading countdown...</p>
+    </div>
   </div>
 
   <script src="script.js" defer></script>
