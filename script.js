@@ -1,8 +1,9 @@
 let offsetX, offsetY, draggedElement, resizing = false, startWidth, startHeight;
-const MIN_WIDTH = 200; // Minimum width for resizing
-const MIN_HEIGHT = 100; // Minimum height for resizing
+let dragging = false; // New variable to track if dragging is active
+const MIN_WIDTH = 200;
+const MIN_HEIGHT = 100;
 
-// Start dragging or resizing
+// Function to start dragging or resizing
 function startDrag(event) {
   if (event.target.classList.contains('resize-handle')) {
     resizing = true;
@@ -13,55 +14,64 @@ function startDrag(event) {
     offsetY = event.clientY;
     document.addEventListener('mousemove', resizeElement);
     document.addEventListener('mouseup', stopResize);
-    document.body.style.userSelect = "none"; // Disable text selection
+    document.body.style.userSelect = "none";
   } else if (event.target.classList.contains('draggable-area')) {
+    dragging = false; // Reset dragging flag
     draggedElement = event.target.closest('.widget');
     draggedElement.style.position = 'absolute';
     offsetX = event.clientX - draggedElement.getBoundingClientRect().left;
     offsetY = event.clientY - draggedElement.getBoundingClientRect().top;
-    document.addEventListener('mousemove', dragElement);
+    document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', stopDrag);
-    document.body.style.userSelect = "none"; // Disable text selection
+    document.body.style.userSelect = "none";
   }
 }
 
-// Resize the widget
+// Handle the actual movement on mouse move
+function handleMouseMove(event) {
+  dragging = true; // Mark as dragging only if mouse is moved
+  dragElement(event);
+}
+
+// Only resize if mouse is moved beyond minimum dimensions
 function resizeElement(event) {
   if (resizing && draggedElement) {
     let newWidth = startWidth + (event.clientX - offsetX);
     let newHeight = startHeight + (event.clientY - offsetY);
 
-    // Enforce minimum width and height
     if (newWidth >= MIN_WIDTH) draggedElement.style.width = `${newWidth}px`;
     if (newHeight >= MIN_HEIGHT) draggedElement.style.height = `${newHeight}px`;
   }
 }
 
-// Stop resizing
+// Stop resizing and re-enable text selection
 function stopResize() {
   resizing = false;
   document.removeEventListener('mousemove', resizeElement);
   document.removeEventListener('mouseup', stopResize);
-  document.body.style.userSelect = ""; // Re-enable text selection
+  document.body.style.userSelect = "";
 }
 
-// Drag the widget
+// Move the widget only when dragging is active
 function dragElement(event) {
-  if (draggedElement && !resizing) {
+  if (draggedElement && !resizing && dragging) {
     draggedElement.style.left = `${event.clientX - offsetX}px`;
     draggedElement.style.top = `${event.clientY - offsetY}px`;
   }
 }
 
-// Stop dragging
+// Stop dragging, but only if it was active
 function stopDrag() {
-  document.removeEventListener('mousemove', dragElement);
-  document.removeEventListener('mouseup', stopDrag);
-  document.body.style.userSelect = ""; // Re-enable text selection
+  if (dragging) {
+    dragging = false;
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', stopDrag);
+    document.body.style.userSelect = "";
+  }
   draggedElement = null;
 }
 
-// Load dynamic content on page load
+// Load dynamic content
 function loadDynamicContent() {
   const idioms = [
     { text: "Bite the bullet", description: "To face a difficult situation with courage." },
@@ -109,6 +119,7 @@ function loadDynamicContent() {
   }, 1000);
 }
 
+// Initialize widgets on load
 window.onload = () => {
   document.querySelectorAll('.widget').forEach(widget => {
     widget.addEventListener('mousedown', startDrag);
