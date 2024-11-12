@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Warrior Wisdom</title>
   <style>
-    /* Basic styles for a warrior-themed look */
     * {
       margin: 0;
       padding: 0;
@@ -56,15 +55,14 @@
       padding: 15px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 8px;
-      border-top: 4px solid #FFD700; /* Adds top border to each widget */
-      position: relative; /* Needed for the resize handle */
+      border-top: 4px solid #FFD700;
+      position: relative;
     }
 
     .draggable-area {
       cursor: move;
     }
 
-    /* Resizable handle for the bottom-right corner */
     .resize-handle {
       width: 15px;
       height: 15px;
@@ -91,7 +89,6 @@
       color: #FFD700;
     }
 
-    /* Time widget with fixed width to prevent resizing */
     .time-widget {
       position: absolute;
       top: 20px;
@@ -130,14 +127,6 @@
     .holidays-widget li {
       margin: 5px 0;
     }
-
-    .remembrance-widget p {
-      font-size: 0.8em;
-      line-height: 1.4em;
-      color: #fff;
-      text-align: center;
-      padding: 10px;
-    }
   </style>
 </head>
 <body>
@@ -148,19 +137,17 @@
     <small class="about">Embrace your warrior spirit with a daily dose of courage and resilience.</small>
   </div>
   
-  <!-- Example of a widget with a resizable handle -->
+  <!-- Daily Quote Widget -->
   <div class="widget daily-quote">
     <h2 class="draggable-area">Daily Warrior Quote</h2>
     <p id="dailyQuote">Loading today's quote...</p>
-    <div class="resize-handle"></div> <!-- Add resize handle -->
+    <div class="resize-handle"></div>
   </div>
 
   <!-- Warrior Timeline Widget -->
   <div class="widget warrior-timeline">
     <h2 class="draggable-area">Warrior Timeline</h2>
-    <ul id="timeline">
-      <!-- Timeline events will be dynamically loaded here -->
-    </ul>
+    <ul id="timeline"></ul>
     <div class="resize-handle"></div>
   </div>
 
@@ -193,32 +180,6 @@
     <div class="resize-handle"></div>
   </div>
 
-  <!-- Remembrance Day Widget -->
-  <div class="widget remembrance-widget">
-    <h2>Remembrance Day</h2>
-    <p id="flandersFieldPoem">
-      In Flanders fields the poppies blow<br>
-      Between the crosses, row on row,<br>
-      That mark our place; and in the sky<br>
-      The larks, still bravely singing, fly<br>
-      Scarce heard amid the guns below.<br><br>
-
-      We are the Dead. Short days ago<br>
-      We lived, felt dawn, saw sunset glow,<br>
-      Loved and were loved, and now we lie<br>
-      In Flanders fields.<br><br>
-
-      Take up our quarrel with the foe:<br>
-      To you from failing hands we throw<br>
-      The torch; be yours to hold it high.<br>
-      If ye break faith with us who die<br>
-      We shall not sleep, though poppies grow<br>
-      In Flanders fields.
-    </p>
-    <div class="resize-handle"></div>
-  </div>
-
-  <!-- Link to the external JavaScript file -->
   <script src="script.js" defer></script>
 </body>
 </html>
