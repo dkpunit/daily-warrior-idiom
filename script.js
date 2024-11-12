@@ -1,6 +1,6 @@
 let offsetX, offsetY, draggedElement, resizing = false, startWidth, startHeight;
 
-// Function to start dragging an element
+// Function to start dragging or resizing an element
 function startDrag(event) {
   if (event.target.classList.contains('resize-handle')) {
     // Start resizing if the resize handle is clicked
@@ -12,6 +12,7 @@ function startDrag(event) {
     offsetY = event.clientY;
     document.addEventListener('mousemove', resizeElement);
     document.addEventListener('mouseup', stopResize);
+    document.body.style.userSelect = "none"; // Disable text selection
   } else {
     const target = event.target.closest('.draggable-area');
     if (target) {
@@ -22,6 +23,7 @@ function startDrag(event) {
       offsetY = event.clientY - draggedElement.getBoundingClientRect().top;
       document.addEventListener('mousemove', dragElement);
       document.addEventListener('mouseup', stopDrag);
+      document.body.style.userSelect = "none"; // Disable text selection
     }
   }
 }
@@ -39,6 +41,7 @@ function stopResize() {
   resizing = false;
   document.removeEventListener('mousemove', resizeElement);
   document.removeEventListener('mouseup', stopResize);
+  document.body.style.userSelect = ""; // Re-enable text selection
 }
 
 // Function to drag the element
@@ -54,16 +57,15 @@ function stopDrag() {
   if (!resizing) {
     document.removeEventListener('mousemove', dragElement);
     document.removeEventListener('mouseup', stopDrag);
+    document.body.style.userSelect = ""; // Re-enable text selection
     draggedElement = null;
   }
 }
 
-// Additional dynamic content functions here (quotes, idioms, time, etc.)
-
 // Initialize all widgets on page load
 window.onload = () => {
   document.querySelectorAll('.widget').forEach(widget => {
+    // Attach the mousedown event to each widget's draggable area and resize handle
     widget.addEventListener('mousedown', startDrag);
   });
-  // Call dynamic content functions here
 };
