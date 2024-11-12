@@ -4,6 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Warrior Wisdom - Admin Login</title>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js"></script>
+
+  <!-- Firebase Configuration -->
+  <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_STORAGE_BUCKET",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+  </script>
+
   <style>
     * {
       margin: 0;
@@ -35,17 +53,6 @@
     .login-container h2 {
       color: #FFD700;
       margin-bottom: 20px;
-    }
-
-    .login-container input[type="text"],
-    .login-container input[type="password"] {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      background-color: #222;
-      border: 1px solid #FFD700;
-      color: #FFD700;
-      border-radius: 5px;
     }
 
     .login-container button {
@@ -112,7 +119,7 @@
       min-width: 220px;
       max-width: 300px;
       border-radius: 3px;
-      resize: both; /* Enable resizing */
+      resize: both;
     }
 
     .widget-header {
@@ -160,9 +167,8 @@
   <!-- Login Container -->
   <div class="login-container" id="login-container">
     <h2>Admin Login</h2>
-    <input type="text" id="username" placeholder="Username">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="handleLogin()">Login</button>
+    <!-- Google Sign-In Button -->
+    <button id="google-signin" onclick="handleGoogleSignIn()">Sign in with Google</button>
   </div>
 
   <!-- Main App Content -->
@@ -186,56 +192,7 @@
       </div>
     </div>
 
-    <div class="widget warrior-timeline" style="left: 260px; top: 20px;">
-      <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
-        <span>Warrior Timeline</span>
-        <button class="close-btn" onclick="closeWidget(this)">X</button>
-      </div>
-      <div class="widget-content">
-        <ul id="timeline">Loading timeline...</ul>
-      </div>
-    </div>
-
-    <div class="widget training-tips" style="left: 500px; top: 20px;">
-      <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
-        <span>Weekly Training Tip</span>
-        <button class="close-btn" onclick="closeWidget(this)">X</button>
-      </div>
-      <div class="widget-content">
-        <p id="weeklyTip">Loading weekly tip...</p>
-      </div>
-    </div>
-
-    <div class="widget time-widget" style="left: 20px; top: 200px;">
-      <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
-        <span>Current Date and Time</span>
-        <button class="close-btn" onclick="closeWidget(this)">X</button>
-      </div>
-      <div class="widget-content">
-        <p id="currentDate">Loading date...</p>
-        <p id="currentTime">Loading time...</p>
-      </div>
-    </div>
-
-    <div class="widget holidays-widget" style="left: 260px; top: 200px;">
-      <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
-        <span>Upcoming Holidays</span>
-        <button class="close-btn" onclick="closeWidget(this)">X</button>
-      </div>
-      <div class="widget-content">
-        <ul id="holidaysList">Loading holidays...</ul>
-      </div>
-    </div>
-
-    <div class="widget countdown-widget" style="left: 500px; top: 200px;">
-      <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
-        <span>Christmas Countdown</span>
-        <button class="close-btn" onclick="closeWidget(this)">X</button>
-      </div>
-      <div class="widget-content">
-        <p id="countdownTimer">Loading countdown...</p>
-      </div>
-    </div>
+    <!-- Other widgets go here -->
   </div>
 
   <script src="script.js" defer></script>
