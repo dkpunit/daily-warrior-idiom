@@ -3,12 +3,10 @@ function handleLogin() {
   const username = document.getElementById('username').value;
   const password = document.getElementById('password').value;
 
-  // Simple validation: Update with your chosen credentials
   const validUsername = 'admin';
   const validPassword = 'yourSecurePassword';
 
   if (username === validUsername && password === validPassword) {
-    // Hide login and show the main app
     document.getElementById('login-container').style.display = 'none';
     document.getElementById('app-content').style.display = 'block';
   } else {

@@ -19,6 +19,7 @@
       justify-content: center;
       align-items: center;
       height: 100vh;
+      overflow: hidden;
     }
 
     .login-container {
@@ -64,6 +65,11 @@
 
     #app-content {
       display: none; /* Hide the main app initially */
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background-color: #333;
     }
 
     .container {
@@ -94,7 +100,59 @@
       margin-top: 0.5em;
     }
 
-    /* Styles for widgets go here (existing styles from previous code) */
+    .widget {
+      padding: 10px;
+      background: #000;
+      color: #FFFFFF;
+      border: 2px solid #FFD700;
+      position: absolute;
+      font-family: "Courier New", Courier, monospace;
+      overflow: auto;
+      word-wrap: break-word;
+      min-width: 220px;
+      max-width: 300px;
+      border-radius: 3px;
+      resize: both; /* Enable resizing */
+    }
+
+    .widget-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #FFD700;
+      color: #333;
+      padding: 5px;
+      font-weight: bold;
+      cursor: move;
+    }
+
+    .widget-content {
+      padding: 10px;
+    }
+
+    .close-btn {
+      background-color: #FFD700;
+      border: none;
+      color: #333;
+      font-weight: bold;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 2px;
+    }
+
+    .reset-all {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #FFD700;
+      color: #333;
+      font-weight: bold;
+      padding: 8px;
+      cursor: pointer;
+      border: none;
+      border-radius: 3px;
+      z-index: 10;
+    }
   </style>
 </head>
 <body>
@@ -109,6 +167,8 @@
 
   <!-- Main App Content -->
   <div id="app-content">
+    <button class="reset-all" onclick="resetAllWidgets()">Reset All Widgets</button>
+
     <div class="container">
       <h1>Warrior Wisdom</h1>
       <p class="idiom" id="dailyIdiom">Loading today's wisdom...</p>
@@ -116,7 +176,66 @@
       <small class="about">Embrace your warrior spirit with a daily dose of courage and resilience.</small>
     </div>
 
-    <!-- Widgets and other content from previous code go here -->
+    <div class="widget daily-quote" style="left: 20px; top: 20px;">
+      <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
+        <span>Daily Warrior Quote</span>
+        <button class="close-btn" onclick="closeWidget(this)">X</button>
+      </div>
+      <div class="widget-content">
+        <p id="dailyQuote">Loading today's quote...</p>
+      </div>
+    </div>
+
+    <div class="widget warrior-timeline" style="left: 260px; top: 20px;">
+      <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
+        <span>Warrior Timeline</span>
+        <button class="close-btn" onclick="closeWidget(this)">X</button>
+      </div>
+      <div class="widget-content">
+        <ul id="timeline">Loading timeline...</ul>
+      </div>
+    </div>
+
+    <div class="widget training-tips" style="left: 500px; top: 20px;">
+      <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
+        <span>Weekly Training Tip</span>
+        <button class="close-btn" onclick="closeWidget(this)">X</button>
+      </div>
+      <div class="widget-content">
+        <p id="weeklyTip">Loading weekly tip...</p>
+      </div>
+    </div>
+
+    <div class="widget time-widget" style="left: 20px; top: 200px;">
+      <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
+        <span>Current Date and Time</span>
+        <button class="close-btn" onclick="closeWidget(this)">X</button>
+      </div>
+      <div class="widget-content">
+        <p id="currentDate">Loading date...</p>
+        <p id="currentTime">Loading time...</p>
+      </div>
+    </div>
+
+    <div class="widget holidays-widget" style="left: 260px; top: 200px;">
+      <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
+        <span>Upcoming Holidays</span>
+        <button class="close-btn" onclick="closeWidget(this)">X</button>
+      </div>
+      <div class="widget-content">
+        <ul id="holidaysList">Loading holidays...</ul>
+      </div>
+    </div>
+
+    <div class="widget countdown-widget" style="left: 500px; top: 200px;">
+      <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
+        <span>Christmas Countdown</span>
+        <button class="close-btn" onclick="closeWidget(this)">X</button>
+      </div>
+      <div class="widget-content">
+        <p id="countdownTimer">Loading countdown...</p>
+      </div>
+    </div>
   </div>
 
   <script src="script.js" defer></script>
