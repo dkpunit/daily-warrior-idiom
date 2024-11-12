@@ -57,10 +57,20 @@
       border-radius: 8px;
       border-top: 4px solid #FFD700;
       position: relative;
+      min-width: 200px; /* Minimum width */
+      min-height: 100px; /* Minimum height */
     }
 
     .draggable-area {
       cursor: move;
+      height: 20px;
+      background-color: rgba(255, 215, 0, 0.3); /* Semi-transparent for visibility */
+      display: none; /* Initially hidden */
+    }
+
+    /* Show the draggable area only on hover */
+    .widget:hover .draggable-area {
+      display: block;
     }
 
     .resize-handle {
@@ -137,45 +147,46 @@
     <small class="about">Embrace your warrior spirit with a daily dose of courage and resilience.</small>
   </div>
   
-  <!-- Daily Quote Widget -->
+  <!-- Widgets with draggable areas and resize handles -->
   <div class="widget daily-quote">
-    <h2 class="draggable-area">Daily Warrior Quote</h2>
+    <div class="draggable-area"></div> <!-- Draggable area at the top, shown only on hover -->
+    <h2>Daily Warrior Quote</h2>
     <p id="dailyQuote">Loading today's quote...</p>
     <div class="resize-handle"></div>
   </div>
 
-  <!-- Warrior Timeline Widget -->
   <div class="widget warrior-timeline">
-    <h2 class="draggable-area">Warrior Timeline</h2>
+    <div class="draggable-area"></div>
+    <h2>Warrior Timeline</h2>
     <ul id="timeline"></ul>
     <div class="resize-handle"></div>
   </div>
 
-  <!-- Weekly Training Tip Widget -->
   <div class="widget training-tips">
-    <h2 class="draggable-area">Weekly Training Tip</h2>
+    <div class="draggable-area"></div>
+    <h2>Weekly Training Tip</h2>
     <p id="weeklyTip">Loading weekly tip...</p>
     <div class="resize-handle"></div>
   </div>
   
-  <!-- Time and Date Widget -->
   <div class="widget time-widget">
-    <h2 class="draggable-area">Current Date and Time</h2>
+    <div class="draggable-area"></div>
+    <h2>Current Date and Time</h2>
     <p id="currentDate">Loading date...</p>
     <p id="currentTime">Loading time...</p>
     <div class="resize-handle"></div>
   </div>
 
-  <!-- Upcoming Holidays Widget -->
   <div class="widget holidays-widget">
-    <h2 class="draggable-area">Upcoming Holidays</h2>
+    <div class="draggable-area"></div>
+    <h2>Upcoming Holidays</h2>
     <ul id="holidaysList">Loading holidays...</ul>
     <div class="resize-handle"></div>
   </div>
 
-  <!-- Christmas Countdown Timer -->
   <div class="widget countdown-widget">
-    <h2 class="draggable-area">Christmas Countdown</h2>
+    <div class="draggable-area"></div>
+    <h2>Christmas Countdown</h2>
     <p id="countdownTimer">Loading countdown...</p>
     <div class="resize-handle"></div>
   </div>

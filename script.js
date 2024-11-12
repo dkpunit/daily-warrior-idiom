@@ -1,6 +1,8 @@
 let offsetX, offsetY, draggedElement, resizing = false, startWidth, startHeight;
+const MIN_WIDTH = 200; // Minimum width for resizing
+const MIN_HEIGHT = 100; // Minimum height for resizing
 
-// Function to start dragging or resizing an element
+// Start dragging or resizing
 function startDrag(event) {
   if (event.target.classList.contains('resize-handle')) {
     resizing = true;
@@ -12,29 +14,30 @@ function startDrag(event) {
     document.addEventListener('mousemove', resizeElement);
     document.addEventListener('mouseup', stopResize);
     document.body.style.userSelect = "none"; // Disable text selection
-  } else {
-    const target = event.target.closest('.draggable-area');
-    if (target) {
-      draggedElement = target.closest('.widget');
-      draggedElement.style.position = 'absolute';
-      offsetX = event.clientX - draggedElement.getBoundingClientRect().left;
-      offsetY = event.clientY - draggedElement.getBoundingClientRect().top;
-      document.addEventListener('mousemove', dragElement);
-      document.addEventListener('mouseup', stopDrag);
-      document.body.style.userSelect = "none"; // Disable text selection
-    }
+  } else if (event.target.classList.contains('draggable-area')) {
+    draggedElement = event.target.closest('.widget');
+    draggedElement.style.position = 'absolute';
+    offsetX = event.clientX - draggedElement.getBoundingClientRect().left;
+    offsetY = event.clientY - draggedElement.getBoundingClientRect().top;
+    document.addEventListener('mousemove', dragElement);
+    document.addEventListener('mouseup', stopDrag);
+    document.body.style.userSelect = "none"; // Disable text selection
   }
 }
 
-// Function to resize the element
+// Resize the widget
 function resizeElement(event) {
   if (resizing && draggedElement) {
-    draggedElement.style.width = `${startWidth + (event.clientX - offsetX)}px`;
-    draggedElement.style.height = `${startHeight + (event.clientY - offsetY)}px`;
+    let newWidth = startWidth + (event.clientX - offsetX);
+    let newHeight = startHeight + (event.clientY - offsetY);
+
+    // Enforce minimum width and height
+    if (newWidth >= MIN_WIDTH) draggedElement.style.width = `${newWidth}px`;
+    if (newHeight >= MIN_HEIGHT) draggedElement.style.height = `${newHeight}px`;
   }
 }
 
-// Function to stop resizing
+// Stop resizing
 function stopResize() {
   resizing = false;
   document.removeEventListener('mousemove', resizeElement);
@@ -42,7 +45,7 @@ function stopResize() {
   document.body.style.userSelect = ""; // Re-enable text selection
 }
 
-// Function to drag the element
+// Drag the widget
 function dragElement(event) {
   if (draggedElement && !resizing) {
     draggedElement.style.left = `${event.clientX - offsetX}px`;
@@ -50,27 +53,24 @@ function dragElement(event) {
   }
 }
 
-// Function to stop dragging
+// Stop dragging
 function stopDrag() {
-  if (!resizing) {
-    document.removeEventListener('mousemove', dragElement);
-    document.removeEventListener('mouseup', stopDrag);
-    document.body.style.userSelect = ""; // Re-enable text selection
-    draggedElement = null;
-  }
+  document.removeEventListener('mousemove', dragElement);
+  document.removeEventListener('mouseup', stopDrag);
+  document.body.style.userSelect = ""; // Re-enable text selection
+  draggedElement = null;
 }
 
-// Function to load dynamic content
+// Load dynamic content on page load
 function loadDynamicContent() {
-  // Example arrays for idioms, quotes, timeline events, etc.
   const idioms = [
     { text: "Bite the bullet", description: "To face a difficult situation with courage." },
     { text: "Stand your ground", description: "To refuse to be pushed back or give in." },
   ];
 
   const quotes = [
-    "Strength does not come from physical capacity. It comes from an indomitable will.",
-    "Victory is reserved for those who are willing to pay its price."
+    "Strength comes from an indomitable will.",
+    "Victory is reserved for those who pay its price."
   ];
 
   const events = [
@@ -79,21 +79,18 @@ function loadDynamicContent() {
   ];
 
   const tips = [
-    "Practice mindfulness to build mental resilience.",
+    "Practice mindfulness to build resilience.",
     "Incorporate interval training to increase stamina."
   ];
 
-  // Update daily idiom
   const date = new Date();
   const idiomIndex = date.getDate() % idioms.length;
   document.getElementById("dailyIdiom").textContent = idioms[idiomIndex].text;
   document.getElementById("idiomDescription").textContent = idioms[idiomIndex].description;
 
-  // Update daily quote
   const quoteIndex = date.getDate() % quotes.length;
   document.getElementById("dailyQuote").textContent = quotes[quoteIndex];
 
-  // Load warrior timeline
   const timeline = document.getElementById("timeline");
   timeline.innerHTML = '';
   events.forEach(event => {
@@ -102,11 +99,9 @@ function loadDynamicContent() {
     timeline.appendChild(listItem);
   });
 
-  // Display weekly training tip
   const week = Math.floor(date.getDate() / 7);
   document.getElementById("weeklyTip").textContent = tips[week % tips.length];
 
-  // Update time and date
   setInterval(() => {
     const now = new Date();
     document.getElementById("currentDate").textContent = now.toLocaleDateString();
@@ -114,7 +109,6 @@ function loadDynamicContent() {
   }, 1000);
 }
 
-// Initialize widgets on load
 window.onload = () => {
   document.querySelectorAll('.widget').forEach(widget => {
     widget.addEventListener('mousedown', startDrag);
