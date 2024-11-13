@@ -3,7 +3,7 @@ window.addEventListener('load', () => {
   // Check if Firebase has initialized
   console.log("Firebase apps:", firebase.apps);
 
-  // Initialize Firebase Auth only if Firebase has initialized successfully
+  // Ensure Firebase is initialized before using it
   if (firebase.apps.length === 0) {
     console.error("Firebase has not been initialized.");
     return;
@@ -30,15 +30,7 @@ window.addEventListener('load', () => {
   // Attach the click event listener to the sign-in button
   document.getElementById("google-signin").addEventListener("click", handleGoogleSignIn);
 
-  // Optional log out function
-  function handleSignOut() {
-    auth.signOut().then(() => {
-      document.getElementById('login-container').style.display = 'flex';
-      document.getElementById('app-content').style.display = 'none';
-    });
-  }
-
-  // Widget functions
+  // Additional widget functions
   function closeWidget(button) {
     const widget = button.closest('.widget');
     widget.style.display = 'none';
