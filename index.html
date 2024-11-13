@@ -6,9 +6,9 @@
   <title>Warrior Wisdom - Admin Login</title>
 
   <!-- Firebase SDKs from CDN -->
-  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js" defer></script>
-  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js" defer></script>
-
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js" defer></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js" defer></script>
+  
   <!-- Firebase Configuration -->
   <script>
     const firebaseConfig = {
@@ -23,7 +23,6 @@
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    console.log(firebase);  
     console.log("Firebase initialized:", firebase.apps.length > 0); // Confirm initialization
   </script>
 
