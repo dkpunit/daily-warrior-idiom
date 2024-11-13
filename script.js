@@ -4,7 +4,7 @@ const auth = firebase.auth();
 // Google Sign-In function
 function handleGoogleSignIn() {
   const provider = new firebase.auth.GoogleAuthProvider();
-  auth.signInWithPopup(provider)
+  firebase.auth().signInWithPopup(provider)
     .then((result) => {
       const user = result.user;
       console.log("User signed in:", user.displayName);
