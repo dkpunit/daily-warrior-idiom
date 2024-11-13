@@ -20,11 +20,10 @@
       appId: "1:685471817615:web:01e7394bdf0eba6c1435fa",
       measurementId: "G-C1Z7BXCL4C"
     };
-
+    
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    console.log("Firebase initialized:", firebase.apps.length > 0);
-
+    console.log("Firebase initialized:", firebase.apps.length > 0); // Confirm initialization
   </script>
 
   <style>
@@ -76,7 +75,7 @@
     }
 
     #app-content {
-      display: none; /* Hide the main app initially */
+      display: none;
       width: 100vw;
       height: 100vh;
       overflow: hidden;
@@ -196,7 +195,7 @@
       </div>
     </div>
 
-    <!-- Additional widgets can be added similarly -->
+    <!-- Additional widgets as needed -->
   </div>
 
   <script src="script.js" defer></script>

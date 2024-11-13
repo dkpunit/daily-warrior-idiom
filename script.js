@@ -3,8 +3,9 @@ const auth = firebase.auth();
 
 // Google Sign-In function
 function handleGoogleSignIn() {
+  console.log("Button clicked");  // Log for debugging
   const provider = new firebase.auth.GoogleAuthProvider();
-  firebase.auth().signInWithPopup(provider)
+  auth.signInWithPopup(provider)
     .then((result) => {
       const user = result.user;
       console.log("User signed in:", user.displayName);
