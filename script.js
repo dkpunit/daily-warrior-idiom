@@ -81,4 +81,7 @@ function loadDynamicContent() {
 
 window.onload = () => {
   document.querySelectorAll('.widget .widget-header').forEach(header => {
-    header.add
+    header.addEventListener('mousedown', (event) => startDrag(event, header.closest('.widget')));
+  });
+  loadDynamicContent();
+};
