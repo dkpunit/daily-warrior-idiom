@@ -1,4 +1,21 @@
-// Wait for the window to load completely before running Firebase code
+// Firebase Authentication handling
+function handleGoogleSignIn() {
+  console.log("Sign-in button clicked"); // Log for debugging
+  const provider = new firebase.auth.GoogleAuthProvider();
+  firebase.auth().signInWithPopup(provider)
+    .then((result) => {
+      const user = result.user;
+      console.log("User signed in:", user.displayName);
+      document.getElementById('login-container').style.display = 'none';
+      document.getElementById('app-content').style.display = 'block';
+    })
+    .catch((error) => {
+      console.error("Error during sign-in:", error);
+      alert("Google sign-in failed. Please try again.");
+    });
+}
+
+// Wait for the window to load completely before running the rest of the Firebase code
 window.addEventListener('load', () => {
   // Check if Firebase has initialized
   console.log("Firebase apps:", firebase.apps);
@@ -11,26 +28,15 @@ window.addEventListener('load', () => {
 
   const auth = firebase.auth();
 
-  function handleGoogleSignIn() {
-    console.log("Sign-in button clicked"); // Log for debugging
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider)
-      .then((result) => {
-        const user = result.user;
-        console.log("User signed in:", user.displayName);
-        document.getElementById('login-container').style.display = 'none';
-        document.getElementById('app-content').style.display = 'block';
-      })
-      .catch((error) => {
-        console.error("Error during sign-in:", error);
-        alert("Google sign-in failed. Please try again.");
-      });
+  // Optional log out function
+  function handleSignOut() {
+    auth.signOut().then(() => {
+      document.getElementById('login-container').style.display = 'flex';
+      document.getElementById('app-content').style.display = 'none';
+    });
   }
 
-  // Attach the click event listener to the sign-in button
-  document.getElementById("google-signin").addEventListener("click", handleGoogleSignIn);
-
-  // Additional widget functions
+  // Widget functions
   function closeWidget(button) {
     const widget = button.closest('.widget');
     widget.style.display = 'none';

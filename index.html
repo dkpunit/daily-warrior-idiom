@@ -5,26 +5,35 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Warrior Wisdom - Admin Login</title>
 
-  <!-- Firebase SDKs from CDN -->
+  <!-- Firebase SDKs in compatibility mode (without defer) -->
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
-  
+
   <!-- Firebase Configuration -->
   <script>
     const firebaseConfig = {
-      apiKey: "AIzaSyAYhTeAM_aj-coCi_nr6t5b9FzkI5RuwIs",
-      authDomain: "davepunit-4338a.firebaseapp.com",
-      projectId: "davepunit-4338a",
-      storageBucket: "davepunit-4338a.firebasestorage.app",
-      messagingSenderId: "685471817615",
-      appId: "1:685471817615:web:01e7394bdf0eba6c1435fa",
-      measurementId: "G-C1Z7BXCL4C"
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_PROJECT_ID.appspot.com",
+      messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+      appId: "YOUR_APP_ID",
+      measurementId: "YOUR_MEASUREMENT_ID"
     };
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     console.log("Firebase initialized:", firebase.apps.length > 0); // Confirm initialization
   </script>
+
+  <!-- Your custom script file with defer attribute -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <!-- Your HTML content here -->
+</body>
+</html>
+
 
   <style>
     * {
