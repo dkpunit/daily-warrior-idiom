@@ -2,6 +2,8 @@
 function handleGoogleSignIn() {
   console.log("Sign-in button clicked"); // Log for debugging
   const provider = new firebase.auth.GoogleAuthProvider();
+  
+  // Use signInWithPopup instead of signInWithRedirect
   firebase.auth().signInWithPopup(provider)
     .then((result) => {
       const user = result.user;
