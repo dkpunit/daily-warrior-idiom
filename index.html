@@ -8,26 +8,9 @@
   <!-- Content Security Policy to allow Firebase and Google scripts -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com https://apis.google.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://www.googleapis.com; img-src 'self' data:;">
 
-  <!-- Firebase SDKs in compatibility mode (without defer) -->
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
-
-  <!-- Firebase Configuration -->
-  <script>
-    const firebaseConfig = {
-      apiKey: "AIzaSyAYhTeAM_aj-coCi_nr6t5b9FzkI5RuwIs",
-      authDomain: "www.davepunit.com",
-      projectId: "davepunit-4338a",
-      storageBucket: "davepunit-4338a.firebasestorage.app",
-      messagingSenderId: "685471817615",
-      appId: "1:685471817615:web:01e7394bdf0eba6c1435fa",
-      measurementId: "G-C1Z7BXCL4C"
-    };
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    console.log("Firebase initialized:", firebase.apps.length > 0); // Confirm initialization
-  </script>
 
   <!-- Custom JavaScript file -->
   <script src="script.js" defer></script>
