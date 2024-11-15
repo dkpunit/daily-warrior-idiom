@@ -1,19 +1,21 @@
 // Firebase Configuration and Initialization
 const firebaseConfig = {
   apiKey: "AIzaSyAYhTeAM_aj-coCi_nr6t5b9FzkI5RuwIs",
-  authDomain: "davepunit-4338a.firebaseapp.com",
+  authDomain: "www.davepunit.com",
   projectId: "davepunit-4338a",
-  storageBucket: "davepunit-4338a.appspot.com",
+  storageBucket: "davepunit-4338a.firebasestorage.app",
   messagingSenderId: "685471817615",
   appId: "1:685471817615:web:01e7394bdf0eba6c1435fa",
   measurementId: "G-C1Z7BXCL4C"
 };
 
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-console.log("Firebase initialized:", firebase.apps.length > 0); // Confirm initialization
+// Initialize Firebase only if not already initialized
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+  console.log("Firebase initialized:", firebase.apps.length > 0); // Confirm initialization
+}
 
-// Firebase Auth and Google Sign-In
+// Firebase Auth and Google Sign-In Code
 function handleGoogleSignIn() {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider)
@@ -29,7 +31,7 @@ function handleGoogleSignIn() {
     });
 }
 
-// Event listeners for buttons and drag functionality
+// Add event listeners for buttons
 window.addEventListener('load', () => {
   document.getElementById("google-signin").addEventListener("click", handleGoogleSignIn);
   document.querySelector(".reset-all").addEventListener("click", resetAllWidgets);
@@ -43,11 +45,10 @@ window.addEventListener('load', () => {
   document.querySelectorAll('.close-btn').forEach(button => {
     button.addEventListener('click', () => closeWidget(button));
   });
-
-  loadDynamicContent(); // Load initial content on page load
 });
 
-// Reset widget positions
+// Additional code for widgets, dynamic content, and drag functionality
+
 function resetAllWidgets() {
   const initialPositions = [
     { selector: '.daily-quote', left: 20, top: 20 },
@@ -61,11 +62,16 @@ function resetAllWidgets() {
   });
 }
 
-// Load dynamic content example
+// Example of loading dynamic content
 function loadDynamicContent() {
   document.getElementById("dailyIdiom").textContent = "Bite the bullet";
   document.getElementById("idiomDescription").textContent = "To face a difficult situation with courage.";
 }
+
+// Call loadDynamicContent when the page loads
+window.onload = () => {
+  loadDynamicContent();
+};
 
 // Drag and drop functionality
 let draggedElement = null;
@@ -92,10 +98,4 @@ function stopDrag() {
   document.removeEventListener('mousemove', dragElement);
   document.removeEventListener('mouseup', stopDrag);
   document.body.style.userSelect = "";
-}
-
-// Close widget
-function closeWidget(button) {
-  const widget = button.closest('.widget');
-  widget.style.display = 'none';
 }
