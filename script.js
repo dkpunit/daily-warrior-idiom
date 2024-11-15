@@ -1,4 +1,4 @@
-// Initialize Firebase Auth and Google Sign-In Code
+// Firebase Auth and Google Sign-In Code
 function handleGoogleSignIn() {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider)
@@ -29,6 +29,12 @@ window.addEventListener('load', () => {
     button.addEventListener('click', () => closeWidget(button));
   });
 });
+
+// Function to close a widget
+function closeWidget(button) {
+  const widget = button.closest('.widget');
+  widget.style.display = 'none';
+}
 
 // Additional code for widgets, dynamic content, and drag functionality
 
