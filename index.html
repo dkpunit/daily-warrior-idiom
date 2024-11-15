@@ -161,12 +161,12 @@
   <!-- Login Container -->
   <div class="login-container" id="login-container">
     <h2>Admin Login</h2>
-    <button id="google-signin" onclick="handleGoogleSignIn()">Sign in with Google</button>
+    <button id="google-signin">Sign in with Google</button>
   </div>
 
   <!-- Main App Content -->
   <div id="app-content">
-    <button class="reset-all" onclick="resetAllWidgets()">Reset All Widgets</button>
+    <button class="reset-all">Reset All Widgets</button>
 
     <div class="container">
       <h1>Warrior Wisdom</h1>
@@ -176,9 +176,9 @@
     </div>
 
     <div class="widget daily-quote" style="left: 20px; top: 20px;">
-      <div class="widget-header" onmousedown="startDrag(event, this.closest('.widget'))">
+      <div class="widget-header">
         <span>Daily Warrior Quote</span>
-        <button class="close-btn" onclick="closeWidget(this)">X</button>
+        <button class="close-btn">X</button>
       </div>
       <div class="widget-content">
         <p id="dailyQuote">Loading today's quote...</p>

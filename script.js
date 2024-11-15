@@ -29,6 +29,22 @@ function handleGoogleSignIn() {
     });
 }
 
+// Add event listeners for buttons
+window.addEventListener('load', () => {
+  document.getElementById("google-signin").addEventListener("click", handleGoogleSignIn);
+  document.querySelector(".reset-all").addEventListener("click", resetAllWidgets);
+
+  // Add drag functionality for widget headers
+  document.querySelectorAll('.widget .widget-header').forEach(header => {
+    header.addEventListener('mousedown', (event) => startDrag(event, header.closest('.widget')));
+  });
+
+  // Add close functionality for widget close buttons
+  document.querySelectorAll('.close-btn').forEach(button => {
+    button.addEventListener('click', () => closeWidget(button));
+  });
+});
+
 // Additional code for widgets, dynamic content, and drag functionality
 
 function resetAllWidgets() {
@@ -54,3 +70,30 @@ function loadDynamicContent() {
 window.onload = () => {
   loadDynamicContent();
 };
+
+// Drag and drop functionality
+let draggedElement = null;
+let offsetX, offsetY;
+
+function startDrag(event, element) {
+  draggedElement = element;
+  offsetX = event.clientX - draggedElement.getBoundingClientRect().left;
+  offsetY = event.clientY - draggedElement.getBoundingClientRect().top;
+  document.addEventListener('mousemove', dragElement);
+  document.addEventListener('mouseup', stopDrag);
+  document.body.style.userSelect = "none";
+}
+
+function dragElement(event) {
+  if (draggedElement) {
+    draggedElement.style.left = `${event.clientX - offsetX}px`;
+    draggedElement.style.top = `${event.clientY - offsetY}px`;
+  }
+}
+
+function stopDrag() {
+  draggedElement = null;
+  document.removeEventListener('mousemove', dragElement);
+  document.removeEventListener('mouseup', stopDrag);
+  document.body.style.userSelect = "";
+}
