@@ -1,3 +1,18 @@
+// Firebase Configuration and Initialization
+const firebaseConfig = {
+  apiKey: "AIzaSyAYhTeAM_aj-coCi_nr6t5b9FzkI5RuwIs",
+  authDomain: "davepunit-4338a.firebaseapp.com",
+  projectId: "davepunit-4338a",
+  storageBucket: "davepunit-4338a.appspot.com",
+  messagingSenderId: "685471817615",
+  appId: "1:685471817615:web:01e7394bdf0eba6c1435fa",
+  measurementId: "G-C1Z7BXCL4C"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+console.log("Firebase initialized:", firebase.apps.length > 0); // Confirm initialization
+
 // Firebase Auth and Google Sign-In Code
 function handleGoogleSignIn() {
   const provider = new firebase.auth.GoogleAuthProvider();
@@ -81,10 +96,4 @@ function stopDrag() {
   document.removeEventListener('mousemove', dragElement);
   document.removeEventListener('mouseup', stopDrag);
   document.body.style.userSelect = "";
-}
-
-// Close widget function
-function closeWidget(button) {
-  const widget = button.closest('.widget');
-  widget.style.display = 'none';
 }
