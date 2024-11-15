@@ -30,18 +30,11 @@ window.addEventListener('load', () => {
   });
 });
 
-// Function to close a widget
-function closeWidget(button) {
-  const widget = button.closest('.widget');
-  widget.style.display = 'none';
-}
-
-// Additional code for widgets, dynamic content, and drag functionality
-
+// Position widgets and load content
 function resetAllWidgets() {
   const initialPositions = [
     { selector: '.daily-quote', left: 20, top: 20 },
-    // Add positions for other widgets as needed
+    { selector: '.container', left: 260, top: 20 },
   ];
   initialPositions.forEach(pos => {
     const widget = document.querySelector(pos.selector);
@@ -51,18 +44,17 @@ function resetAllWidgets() {
   });
 }
 
-// Example of loading dynamic content
+// Example dynamic content load
 function loadDynamicContent() {
   document.getElementById("dailyIdiom").textContent = "Bite the bullet";
   document.getElementById("idiomDescription").textContent = "To face a difficult situation with courage.";
 }
 
-// Call loadDynamicContent when the page loads
 window.onload = () => {
   loadDynamicContent();
 };
 
-// Drag and drop functionality
+// Drag functionality
 let draggedElement = null;
 let offsetX, offsetY;
 
@@ -87,4 +79,9 @@ function stopDrag() {
   document.removeEventListener('mousemove', dragElement);
   document.removeEventListener('mouseup', stopDrag);
   document.body.style.userSelect = "";
+}
+
+function closeWidget(button) {
+  const widget = button.closest('.widget');
+  widget.style.display = 'none';
 }
