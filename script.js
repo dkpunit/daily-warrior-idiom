@@ -1,21 +1,4 @@
-// Firebase Configuration and Initialization
-const firebaseConfig = {
-  apiKey: "AIzaSyAYhTeAM_aj-coCi_nr6t5b9FzkI5RuwIs",
-  authDomain: "www.davepunit.com",
-  projectId: "davepunit-4338a",
-  storageBucket: "davepunit-4338a.firebasestorage.app",
-  messagingSenderId: "685471817615",
-  appId: "1:685471817615:web:01e7394bdf0eba6c1435fa",
-  measurementId: "G-C1Z7BXCL4C"
-};
-
-// Initialize Firebase only if not already initialized
-if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
-  console.log("Firebase initialized:", firebase.apps.length > 0); // Confirm initialization
-}
-
-// Firebase Auth and Google Sign-In Code
+// Initialize Firebase Auth and Google Sign-In Code
 function handleGoogleSignIn() {
   const provider = new firebase.auth.GoogleAuthProvider();
   firebase.auth().signInWithPopup(provider)
