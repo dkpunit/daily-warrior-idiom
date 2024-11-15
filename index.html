@@ -17,9 +17,26 @@
     object-src 'none';
   ">
 
-  <!-- Firebase SDKs -->
+  <!-- Firebase SDK from Firebase Console -->
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyAYhTeAM_aj-coCi_nr6t5b9FzkI5RuwIs",
+      authDomain: "davepunit-4338a.firebaseapp.com",
+      projectId: "davepunit-4338a",
+      storageBucket: "davepunit-4338a.appspot.com",
+      messagingSenderId: "685471817615",
+      appId: "1:685471817615:web:01e7394bdf0eba6c1435fa",
+      measurementId: "G-C1Z7BXCL4C"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    console.log("Firebase initialized:", firebase.apps.length > 0);
+  </script>
 
   <!-- Custom JavaScript file -->
   <script src="script.js" defer></script>
@@ -135,7 +152,7 @@
       font-weight: bold;
       cursor: move;
     }
-
+      
     .widget-content {
       padding: 10px;
     }
