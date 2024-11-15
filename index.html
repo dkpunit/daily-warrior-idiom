@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Warrior Wisdom - Admin Login</title>
 
+  <!-- Content Security Policy to allow Firebase and Google scripts -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.gstatic.com https://www.googleapis.com https://apis.google.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://www.googleapis.com; img-src 'self' data:;">
+
   <!-- Firebase SDKs in compatibility mode (without defer) -->
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
@@ -26,15 +29,10 @@
     console.log("Firebase initialized:", firebase.apps.length > 0); // Confirm initialization
   </script>
 
-  <!-- Your custom script file with defer attribute -->
+  <!-- Custom JavaScript file -->
   <script src="script.js" defer></script>
-</head>
-<body>
-  <!-- Your HTML content here -->
-</body>
-</html>
 
-
+  <!-- CSS Styles -->
   <style>
     * {
       margin: 0;
@@ -145,7 +143,7 @@
       font-weight: bold;
       cursor: move;
     }
-
+      
     .widget-content {
       padding: 10px;
     }
@@ -207,6 +205,5 @@
     <!-- Additional widgets as needed -->
   </div>
 
-  <script src="script.js" defer></script>
 </body>
 </html>
