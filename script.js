@@ -97,3 +97,4 @@ function stopDrag() {
   document.removeEventListener('mouseup', stopDrag);
   document.body.style.userSelect = "";
 }
+  

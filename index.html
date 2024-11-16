@@ -17,26 +17,9 @@
     object-src 'none';
   ">
 
-  <!-- Firebase SDK from Firebase Console -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
-
-  <script>
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyAYhTeAM_aj-coCi_nr6t5b9FzkI5RuwIs",
-      authDomain: "davepunit-4338a.firebaseapp.com",
-      projectId: "davepunit-4338a",
-      storageBucket: "davepunit-4338a.appspot.com",
-      messagingSenderId: "685471817615",
-      appId: "1:685471817615:web:01e7394bdf0eba6c1435fa",
-      measurementId: "G-C1Z7BXCL4C"
-    };
-
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    console.log("Firebase initialized:", firebase.apps.length > 0);
-  </script>
 
   <!-- Custom JavaScript file -->
   <script src="script.js" defer></script>
@@ -110,23 +93,6 @@
       margin-bottom: 20px;
     }
 
-    h1, h2 {
-      font-size: 1.8em;
-      color: #FFD700;
-    }
-
-    .idiom {
-      font-size: 1.3em;
-      color: #FFD700;
-    }
-
-    .idiom-description {
-      font-size: 1em;
-      font-style: italic;
-      color: #ccc;
-      margin-top: 0.5em;
-    }
-
     .widget {
       padding: 10px;
       background: #000;
@@ -140,6 +106,7 @@
       max-width: 300px;
       border-radius: 3px;
       resize: both;
+      display: block;
     }
 
     .widget-header {
@@ -151,20 +118,6 @@
       padding: 5px;
       font-weight: bold;
       cursor: move;
-    }
-      
-    .widget-content {
-      padding: 10px;
-    }
-
-    .close-btn {
-      background-color: #FFD700;
-      border: none;
-      color: #333;
-      font-weight: bold;
-      cursor: pointer;
-      padding: 5px;
-      border-radius: 2px;
     }
 
     .reset-all {
@@ -183,7 +136,6 @@
   </style>
 </head>
 <body>
-
   <!-- Login Container -->
   <div class="login-container" id="login-container">
     <h2>Admin Login</h2>
@@ -198,7 +150,6 @@
       <h1>Warrior Wisdom</h1>
       <p class="idiom" id="dailyIdiom">Loading today's wisdom...</p>
       <p class="idiom-description" id="idiomDescription"></p>
-      <small class="about">Embrace your warrior spirit with a daily dose of courage and resilience.</small>
     </div>
 
     <div class="widget daily-quote" style="left: 20px; top: 20px;">
@@ -211,8 +162,15 @@
       </div>
     </div>
 
-    <!-- Additional widgets as needed -->
+    <div class="widget warrior-timeline" style="left: 260px; top: 20px;">
+      <div class="widget-header">
+        <span>Warrior Timeline</span>
+        <button class="close-btn">X</button>
+      </div>
+      <div class="widget-content">
+        <p>Loading warrior timeline...</p>
+      </div>
+    </div>
   </div>
-
 </body>
 </html>
